@@ -5,7 +5,7 @@ const Home = () => {
       <main>
         <div>
           <h1>CUBE</h1>
-          <p>アウトプットしなさい</p>
+          <p>アウトプットしなさい2</p>
         </div>
       </main>
       <footer>FOOTER</footer>
