@@ -1,10 +1,12 @@
 import Logo from 'components/logo'
 import Nav from 'components/nav'
-
+import styles from 'styles/header.module.css'
 const Header = () => (
   <header>
-    <Logo />
-    <Nav />
+    <div className={styles.flexContainer}>
+      <Logo />
+      <Nav />
+    </div>
   </header>
 )
 
