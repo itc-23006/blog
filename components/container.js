@@ -1,10 +1,10 @@
-import styles from 'styles/container.module.css'
+import styles from 'styles/contact.module.css'
 
 export default function Container ({ children, large = false }) {
   return (
-    <div className={large ? styles.large : styles.default}>
+    <div className={styles.stack}>
       <h3 className={styles.heading}>Contact</h3>
-      <address>cube@web.mailaddress</address>
+      <address>cube@web.mail.address</address>
     </div>
   )
 }
