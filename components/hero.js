@@ -11,10 +11,10 @@ const Hero = ({ title, subtitle, imageOn = false }) => {
         <p>{subtitle}</p>
       </div>
       {imageOn && (
-      <figure>
-      <Image src={cube} alt="" layout="responsive" />
-      </figure>
-      )
+        <figure>
+          <Image src={cube} alt='' layout='responsive' />
+        </figure>
+      )}
     </div>
   )
 }
