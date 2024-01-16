@@ -1,5 +1,6 @@
 import { getPostBySlug, getAllSlugs } from 'lib/api'
 import extractText from 'lib/extract-text'
+import { prevNextPost } from 'lib/prev-next-post'
 import Meta from 'components/meta'
 import Container from 'components/container'
 import PostHeader from 'components/post-header'
@@ -22,7 +23,9 @@ const Post = ({
   content,
   eyecatch,
   categories,
-  description
+  description,
+  prevPost,
+  nextPost
 }) => {
   return (
     <Container>
@@ -61,6 +64,19 @@ const Post = ({
             <PostCategories categories={categories} />
           </TwoColumnSidebar>
         </TwoColumn>
+
+        <div>
+          {prevPost && (
+            <div>
+              {prevPost.title} {prevPost.slug}
+            </div>
+          )}
+          {nextPost && (
+            <div>
+              {nextPost.title} {nextPost.slug}
+            </div>
+          )}
+        </div>
       </article>
     </Container>
   )
@@ -70,7 +86,6 @@ const getStaticPaths = async () => {
   const allslugs = await getAllSlugs()
 
   if (!allslugs) {
-    // もし allslugs が未定義の場合、エラーを回避するために空の配列を返す
     return {
       paths: [],
       fallback: false
@@ -100,6 +115,9 @@ const getStaticProps = async ({ params }) => {
   const { base64 } = await getPlaiceholder(eyecatch.url)
   eyecatch.blurDataURL = base64
 
+  const allSlugs = await getAllSlugs()
+  const [prevPost, nextPost] = prevNextPost(allSlugs, slug)
+
   return {
     props: {
       title: post.title,
@@ -107,7 +125,9 @@ const getStaticProps = async ({ params }) => {
       content: post.content,
       eyecatch,
       categories: post.categories,
-      description
+      description,
+      prevPost,
+      nextPost
     }
   }
 }
